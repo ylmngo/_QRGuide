@@ -4,13 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-pyscopg2 = "*"
-psycopg2-binary = "*"
-python-dotenv = "*"
-gunicorn = "*"
-whitenoise = "*"
-brotli = "*"
+django = "==4.2.2"
+pyscopg2 = "==66.0.2"
+psycopg2-binary = "==2.9.6"
+python-dotenv = "==1.0.0"
+gunicorn = "==20.1.0"
+whitenoise = "==6.4.0"
+brotli = "==1.0.9"
+asgiref = "==3.7.2"
+sqlparse = "==0.4.4"
+tzdata = "==2023.3"
 
 [dev-packages]
 
