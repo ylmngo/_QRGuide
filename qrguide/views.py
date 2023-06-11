@@ -3,6 +3,14 @@ from django.http import HttpResponse
 from django.template import loader 
 from django.urls import reverse 
 
+def index_view(request): 
+    template = loader.get_template("home.html")
+    return HttpResponse(template.render({}, request))
+
+def about_view(request): 
+    template = loader.get_template("about.html")
+    return HttpResponse(template.render({}, request))
+
 def college_view(request): 
     template = loader.get_template('college.html') 
     return HttpResponse(template.render({}, request))
