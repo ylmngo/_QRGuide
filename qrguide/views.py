@@ -8,8 +8,10 @@ def college_view(request):
 
 def block_view(request, block_id): 
     template = loader.get_template('block.html')
-    image = f"b{block_id}.jpg"
+    image = f"b{block_id}"
+    image_url = 'images/{}.jpg'.format(image) 
+    print(image_url) 
     context = {
-        "image": image, 
+        "image": image_url, 
     }
     return HttpResponse(template.render(context, request))
