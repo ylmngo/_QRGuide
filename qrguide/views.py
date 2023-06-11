@@ -10,13 +10,15 @@ def college_view(request):
 def block_view(request, block_id): 
     template = loader.get_template('block.html')
     image = f"b{block_id}"
-    image_url = 'images/{}.jpg'.format(image) 
+    image_url = 'images/{}.jpg'.format(image) # for adding image file as a jinja variable to load static 
     context = {
         "image": image_url, 
     }
     return HttpResponse(template.render(context, request))
 
 def floor_view(request, block_id, floor_id, marked):
+
+    # marked values are true for images with marker representing the location of the QR Code  
     if marked: 
         image = f"ab{block_id}_{floor_id}" 
     else: 
@@ -25,8 +27,13 @@ def floor_view(request, block_id, floor_id, marked):
 
     template = loader.get_template('floor.html')
     image_url = 'images/{}.jpg'.format(image)
+
+    # Boolean values reprenseting whether we there is a floor above  
+    # below the current floor 
     up = is_above(block_id=block_id, floor_id=floor_id)
     down = is_below(floor_id=floor_id)
+
+    # URLS for floors above and below the current floor 
     floor_up = base_url + 'block/{}/floor/{}/marker/{}'.format(block_id, floor_id + 1, 0)
     floor_below = base_url + 'block/{}/floor/{}/marker/{}'.format(block_id, floor_id - 1, 0)
 
@@ -39,7 +46,8 @@ def floor_view(request, block_id, floor_id, marked):
     }
 
     return HttpResponse(template.render(context, request))
-        
+
+# Get the top floor_id of the current block             
 def get_max_floor(block_id): 
     match block_id: 
         case 1: 
