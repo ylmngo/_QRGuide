@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
     crossorigin=""/>
@@ -15,51 +14,66 @@
     <style>
         #map {
             height: 100vh;
-            padding: 0%;
+            padding: 0%; 
         }
         #arrows{
             position: fixed;
-            z-index: 10;
+            z-index: 3;
             bottom: 0;
             right: 0;
             width: 15vw;
             padding-bottom: 3vh;
         }
+        #backarrow{
+            position: fixed;
+            z-index: 3;
+            top: 0;
+            left: 0;
+            width: 15vw;
+            padding-bottom: 3vh;
+        }
+        .glyphicon {
+            font-size: 7vh;
+        }
     </style>
+    <title>QRGuide</title>
 </head>
 <body>
-    <div id="map" style="z-index: 2;">
+    <div id="map" style="z-index: 2">
+
     </div>
-    <map name="imagemap">
-        <area shape="rect" coords="491.5,427.5,565,497.5" href="../../college/block/1/floor/0/marker/0" alt="Block-1">
-        <area shape="rect" coords="496,506.5,557,528.5" href="../../college/block/2/floor/0/marker/0" alt="Block-2">
-        <area shape="rect" coords="343.5,261,574.5,366" href="../../college/block/3/floor/0/marker/0" alt="Block-3">
-        <area shape="rect" coords="439.5,436,491,489" href="../../college/block/4/floor/0/marker/0" alt="Block-4">
-        <area shape="rect" coords="467.5,339,554,591.5" href="../../college/block/5/floor/0/marker/0" alt="Block-5">
-    </map>
+    <div id="backarrow">
+        <a href="../../../../../../../college">
+            <span class="glyphicon glyphicon-circle-arrow-left" style="height: 2vh; width: 2w; padding-bottom: 1vh;"></span>
+        </a>
+    </div>
+    <div id="arrows">
+        {% if up %}
+            <a href="{{ floor_up }}">
+                <span class="glyphicon glyphicon-circle-arrow-up" style="height: 2vh; width: 2w; padding-bottom: 1vh;"></span>
+            </a>
+        {% endif %}
+        {% if down %}
+            <a href="{{ floor_below }}" style="padding-top: 1vh;">
+                <span class="glyphicon glyphicon-circle-arrow-down" style="height: 3vh; width: 2vw;"></span>
+            </a>
+        {% endif %}
+    </div>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
     crossorigin=""></script>
     <script>
-        //for displaying map
         var map = L.map('map', {
-            center: [500, 500],
-            zoom: -4,
+            zoomControl: false, 
+            center: [400, 350],
+            zoom: -2,
+            minZoom: -6,
             crs: L.CRS.Simple,
         });
-        var bounds = [[0,0], [1000, 1000]]; 
+        var bounds = [[0,0], [800, 700]];
         var image = L.imageOverlay("{% static image|safe %}", bounds)
-        map.fitBounds(bounds)
+        map.fitBounds(bounds);
         image.addTo(map) 
-        img_ele = image.getElement() 
-        
-         map.on('click', function(e) {
-            alert("Lat, Long: " + e.latlng.lat + " , " + e.latlng.lng)
-        });
-        img_ele.setAttribute("title", "Image Map")
-        img_ele.setAttribute("usemap", "#imagemap") 
-        img_ele.setAttribute("id", "clgmap")
-        img_ele.style.pointerEvents = "auto"; 
     </script>
 </body>
-</html>     
+</html>
