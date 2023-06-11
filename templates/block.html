@@ -52,10 +52,6 @@
         map.fitBounds(bounds)
         image.addTo(map) 
         img_ele = image.getElement() 
-        
-         map.on('click', function(e) {
-            alert("Lat, Long: " + e.latlng.lat + " , " + e.latlng.lng)
-        });
         img_ele.setAttribute("title", "Image Map")
         img_ele.setAttribute("usemap", "#imagemap") 
         img_ele.setAttribute("id", "clgmap")
