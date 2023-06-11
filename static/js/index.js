@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
       event.preventDefault();
   
       const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
+      const department = document.getElementById('department').value;
       const phone = document.getElementById('phone').value;
       const message = document.getElementById('message').value;
   
@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
         displayWarning('name');
         isValid = false;
       }
-      if (!validateEmail(email)) {
-        displayWarning('email');
+      if (department.trim() === '') {
+        displayWarning('department');
         isValid = false;
       }
       if (!validatePhone(phone)) {
@@ -59,16 +59,16 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
   
-      if (isSubmissionExists(email)) {
+      if (isSubmissionExists(phone)) {
         const confirmation = confirm('A submission has already been made with this email address. Are you sure you want to submit another suggestion?');
         if (!confirmation) {
           return;
         }
       }
   
-      saveSubmission(email); 
+      saveSubmission(phone); 
   
-      alert(`Submitted Form Data:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`);
+      alert(`Submitted Form Data:\nName: ${name}\nDepartment: ${department}\nPhone: ${phone}\nMessage: ${message}`);
   
       form.reset();
   
@@ -126,14 +126,14 @@ document.addEventListener('DOMContentLoaded', function() {
       return false;
     }
   
-    function isSubmissionExists(email) {
+    function isSubmissionExists(phone) {
       return false;
     }
   
-    function saveSubmission(email) {
+    function saveSubmission(phone) {
     }
   
-    function retrieveSavedData(email) {
+    function retrieveSavedData(phone) {
       return null;
     }
   
