@@ -9,6 +9,8 @@ pyscopg2 = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
 gunicorn = "*"
+whitenoise = "*"
+brotli = "*"
 
 [dev-packages]
 
