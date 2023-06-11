@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="ImageMapster/dist/jquery.imagemapster.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #map {
+            height: 100vh;
+            padding: 0%;
+        }
+        #arrows{
+            position: fixed;
+            z-index: 10;
+            bottom: 0;
+            right: 0;
+            width: 15vw;
+            padding-bottom: 3vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="map" style="z-index: 2;">
+    </div>
+    <map name="imagemap">
+        <area shape="rect" coords="491.5,427.5,565,497.5" href="block/1/floor/1" alt="Block-1">
+        <area shape="rect" coords="496,506.5,557,528.5" href="block/2/floor/6" alt="Block-2">
+        <area shape="rect" coords="343.5,261,574.5,366" href="block/3/floor/9" alt="Block-3">
+        <area shape="rect" coords="439.5,436,491,489" href="block/4/floor/10" alt="Block-4">
+        <area shape="rect" coords="467.5,339,554,591.5" href="block/5/floor/14" alt="Block-5">
+    </map>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
+    <script>
+        //for displaying map
+        var map = L.map('map', {
+            center: [500, 500],
+            zoom: -4,
+            crs: L.CRS.Simple,
+        });
+        var bounds = [[0,0], [1000, 1000]]; 
+        var image = L.imageOverlay("{% static 'images/college_map.jpg' %}", bounds)
+        map.fitBounds(bounds)
+        image.addTo(map) 
+        img_ele = image.getElement() 
+        
+         map.on('click', function(e) {
+            alert("Lat, Long: " + e.latlng.lat + " , " + e.latlng.lng)
+        });
+        img_ele.setAttribute("title", "Image Map")
+        img_ele.setAttribute("usemap", "#imagemap") 
+        img_ele.setAttribute("id", "college_map")
+        img_ele.style.pointerEvents = "auto"; 
+    </script>
+</body>
+</html>     
