@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-vz&!uzu8bmc1o&p1ql(pzc_*46&h#i(a(o%g3=v(tv1672oiut'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG') 
 
 ALLOWED_HOSTS = ['*', 'qrguide.onrender.com']
 
