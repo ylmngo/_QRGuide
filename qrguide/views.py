@@ -3,7 +3,26 @@ from django.http import HttpResponse
 from django.template import loader 
 from django.urls import reverse 
 
+from .models import Comments
+
 def index_view(request): 
+
+    if request.method == 'POST': 
+        data = request.POST 
+        name = data.get('name')
+        department = data.get('department')
+        phone = data.get('phone')
+        message = data.get('message')
+
+        obj = Comments() 
+
+        obj.name = name 
+        obj.department = department
+        obj.phone = phone 
+        obj.message = message 
+
+        obj.save() 
+
     template = loader.get_template("home.html")
     return HttpResponse(template.render({}, request))
 
