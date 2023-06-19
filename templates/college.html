@@ -25,10 +25,40 @@
             width: 15vw;
             padding-bottom: 3vh;
         }
+        #backarrow{
+            position: fixed;
+            z-index: 3;
+            top: 0;
+            width: 15vw;
+            padding-bottom: 3vh;
+            margin-left: 80%; margin-top: 10%;
+        }
+        .glyphicon {
+            font-size: 7vh;
+        }
+        @media only screen and (max-width: 768px) {
+            #backarrow{
+                position: fixed;
+                z-index: 3;
+                top: 0;
+                width: 15vw;
+                padding-bottom: 3vh;
+                margin-left: 13%;
+                margin-top: 2%; 
+            }
+            .glyphicon {
+                font-size: 7vh;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="map" style="z-index: 2;">
+    </div>
+    <div id="backarrow">
+        <a href="../">
+            <span class="glyphicon glyphicon-home" style="height: 2vh; width: 2w; padding-bottom: 1vh;"></span>
+        </a>
     </div>
     <map name="imagemap">
         <area shape="rect" coords="491.5,427.5,565,497.5" href="block/1/floor/0/marker/0" alt="Block-1">
