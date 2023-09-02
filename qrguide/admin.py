@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Comments 
+
+class CommentsAdmin(admin.ModelAdmin):
+    fields = ["name", "department", "phone", "message"]
+
+admin.site.register(Comments, CommentsAdmin)

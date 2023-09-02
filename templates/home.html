@@ -63,26 +63,26 @@
   </div>
   <hr>
   <div class="container2">
-    <form id="myForm">
+    <form id="myForm" action="/" method="post"> 
+      {% csrf_token %}
       <label for="name">Name:</label>
-      <input type="text" id="name" placeholder="ex:your name">
-      <img src="warning.png" alt="Warning" id="name-warning" style="display: none;"><br>
+      <input type="text" id="name" name="name" placeholder="ex:your name">
+      <br>
     
-      <label for="department">department</label>
-      <input type="text" id="department" placeholder="Engineering-IT">
-      <img src="warning.png" alt="Warning" id="email-warning" style="display: none;"><br>
+      <label for="department">Department:</label>
+      <input type="text" id="department" name="department" placeholder="Engineering-IT">
+      <br>
     
       <label for="phone">Phone:</label>
-      <input type="tel" id="phone" placeholder="ex:1275xxxxx09">
-      <img src="warning.png" alt="Warning" id="phone-warning" style="display: none;"><br>
+      <input type="tel" id="phone" name="phone" placeholder="ex:1275xxxxx09">
+      <br>
     
       <label for="message">Message:</label>
-      <textarea id="message" placeholder="feedback and suggestions"></textarea>
-      <img src="warning.png" alt="Warning" id="message-warning" style="display: none;"><br>
-    
-      <input type="submit" value="Submit">
-      <input type="reset">
-    </form> 
+      <textarea id="message" name="message" placeholder="feedback and suggestions"></textarea>
+      <br>
+      
+      <button class="post">Submit</button>
+      </form> 
   </div><br>
 </div>
   <hr>

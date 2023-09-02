@@ -70,24 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
       alert(`Submitted Form Data:\nName: ${name}\nDepartment: ${department}\nPhone: ${phone}\nMessage: ${message}`);
   
-      form.reset();
+      form.submit();
   
       hideAllWarnings();
-    });
-  
-    form.addEventListener('click', (event) => {
-      const target = event.target;
-      if (target.id === 'email') {
-        const email = target.value.trim();
-        if (email !== '') {
-          if (isSubmissionExists(email)) {
-            const savedData = retrieveSavedData(email);
-            if (savedData) {
-              alert(`Saved Form Data:\nName: ${savedData.name}\nEmail: ${savedData.email}\nPhone: ${savedData.phone}\nMessage: ${savedData.message}`);
-            }
-          }
-        }
-      }
     });
   
     function displayWarning(fieldId) {

@@ -3,12 +3,32 @@ from django.http import HttpResponse
 from django.template import loader 
 from django.urls import reverse 
 
+from .models import Comments 
+
 def index_view(request): 
+    if request.method == 'POST':
+
+        # Get Form data through the post request 
+        data = request.POST 
+
+        # Save Form data to the database 
+        obj  = Comments() 
+        obj.name = data.get("name")
+        obj.department = data.get("department")
+        obj.phone = data.get("phone")
+        obj.message = data.get("message")
+        obj.save() 
+
     template = loader.get_template("home.html")
     return HttpResponse(template.render({}, request))
 
 def about_view(request): 
     template = loader.get_template("about.html")
+    return HttpResponse(template.render({}, request))
+
+def about_person_view(request, person): 
+    print(person) 
+    template = loader.get_template(person +".html") 
     return HttpResponse(template.render({}, request))
 
 def college_view(request): 
