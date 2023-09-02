@@ -3,20 +3,24 @@ from django.http import HttpResponse
 from django.template import loader 
 from django.urls import reverse 
 
-from .models import Comments 
+from .models import Comments
 
 def index_view(request): 
-    if request.method == 'POST':
 
-        # Get Form data through the post request 
+    if request.method == 'POST': 
         data = request.POST 
+        name = data.get('name')
+        department = data.get('department')
+        phone = data.get('phone')
+        message = data.get('message')
 
-        # Save Form data to the database 
-        obj  = Comments() 
-        obj.name = data.get("name")
-        obj.department = data.get("department")
-        obj.phone = data.get("phone")
-        obj.message = data.get("message")
+        obj = Comments() 
+
+        obj.name = name 
+        obj.department = department
+        obj.phone = phone 
+        obj.message = message 
+
         obj.save() 
 
     template = loader.get_template("home.html")
